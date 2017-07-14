@@ -1,0 +1,21 @@
+dependencies: \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../cocos/platform/ios/cocos2d-prefix.pch \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/external/bullet/BulletMultiThreaded/btGpu3DGridBroadphase.cpp \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletMultiThreaded/btGpuDefines.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletMultiThreaded/btGpuUtilsSharedDefs.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletMultiThreaded/btGpuUtilsSharedCode.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/LinearMath/btAlignedAllocator.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/LinearMath/btScalar.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/LinearMath/btQuickprof.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletCollision//BroadphaseCollision/btOverlappingPairCache.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletCollision//BroadphaseCollision/btBroadphaseInterface.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletCollision//BroadphaseCollision/btBroadphaseProxy.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/LinearMath/btVector3.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/LinearMath/btMinMax.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletCollision//BroadphaseCollision/btOverlappingPairCallback.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/LinearMath/btAlignedObjectArray.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/external/bullet/BulletMultiThreaded/btGpu3DGridBroadphaseSharedDefs.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/external/bullet/BulletMultiThreaded/btGpu3DGridBroadphaseSharedTypes.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/external/bullet/BulletMultiThreaded/btGpu3DGridBroadphase.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/build/../external/bullet/BulletCollision//BroadphaseCollision/btSimpleBroadphase.h \
+  /Users/hackintosh/Desktop/Projects/Cocos/TestProject/TestProject/cocos2d/external/bullet/BulletMultiThreaded/btGpu3DGridBroadphaseSharedCode.h
