@@ -11,43 +11,37 @@
 Figure::Figure(int type, Point block)
 {
     styleType = type;
-    switch(type)
-    {
-        case 1:
-            //blocks = new vector<cocos2d::Point>(4);
-            blocks = style1(block, type);
-            pivot = &blocks[2];
-            break;
-        case 2:
-            blocks = style1(block, type);
-            pivot = &blocks[2];
-        default:
-            block = {block};
-            break;
-            
-    }
+    blocks = style1(block, type);
 }
 
 vector<cocos2d::Point> Figure::style1(Point block, int type)
 {
+    vector<cocos2d::Point> blocks;
+    
     switch(type)
     {
         case 1:
-            return {block, Point(block.x, block.y + 1),
+            blocks =  {block, Point(block.x, block.y + 1),
                 Point(block.x + 1, block.y), Point(block.x + 2, block.y)};
+            pivot = &blocks[2];
             break;
         case 2:
-            return {block, Point(block.x, block.y + 1),
+            blocks =  {block, Point(block.x, block.y + 1),
                 Point(block.x - 1, block.y + 1), Point(block.x - 2, block.y + 1),
                 Point(block.x - 2, block.y + 2), Point(block.x - 2, block.y + 3),
                 Point(block.x + 1, block.y + 1), Point(block.x + 2, block.y + 1),
                 Point(block.x + 2, block.y + 2), Point(block.x + 2, block.y + 3),
                 Point(block.x + 1, block.y + 3), Point(block.x, block.y + 3)};
+            pivot = &blocks[2];
             break;
         default:
+            pivot = &blocks[0];
+            blocks = {block};
             break;
             
     }
+    
+    return blocks;
 }
 
 vector<Point> Figure::getBlocks()
@@ -73,19 +67,9 @@ void Figure::moveDown()
 void Figure::reset(Size containerSize)
 {
     
-    switch(styleType)
-    {
-        case 1:
-            //blocks = new vector<cocos2d::Point>(4);
-            blocks = style1(Point(containerSize.width - 1,
-                                  blocks[0].y), styleType);
-            break;
-            
-        default:
-            blocks = {Point(containerSize.width - 1, containerSize.height - 1)};
-            break;
-            
-    }
+    blocks = style1(Point(containerSize.width - 1,
+                    int(containerSize.height / 2)),
+                    styleType);
 }
 
 bool Figure::isInside(Point block)

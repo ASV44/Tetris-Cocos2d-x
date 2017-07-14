@@ -77,14 +77,10 @@ void MainScene::update(float delta) {
     int row, column;
     bool colision = false;
     static vector<Point> toClear;
-    
-    static int counter = 0;
+    static bool bottomReached = false;
     
     time += delta;
     if(time > 0.3) {
-        if(counter == 7) {
-            figures->showPosition();
-        }
         for(int i = 0; i < toClear.size(); ++i) {
             if( toClear[i].x <= container->getContainerSize().width - 1) {
                 container->getContainerElements(toClear[i].x,toClear[i].y)->setType(DEFAULT_STYLE);
@@ -112,28 +108,22 @@ void MainScene::update(float delta) {
                     
                     colision = true;
                 }
+                
+                if(row == 0) { bottomReached = true; }
             
             }
-
-            
-            //row--;
-            
-//            if(row < 0) {
-//                row = container->getContainerSize().width - 1;
-//            }
         }
-        counter ++;
         time = 0;
-        toClear = figures->getBlocks();
-        CCLOG("First Counter %d", counter);
-//        if(counter == 7) {
-//            figures->rotate(0);
-//        }
-
-        figures->moveDown();
         
-        if(figures->getBlocks()[0].x < 0 || colision == true) {
+        if(bottomReached == true || colision == true) {
             figures->reset(container->getContainerSize());
+            toClear.clear();
+            bottomReached = false;
+            colision = false;
+        }
+        else {
+            toClear = figures->getBlocks();
+            figures->moveDown();
         }
 
     }
