@@ -14,6 +14,8 @@
 
 #include "Figure.h"
 
+#include "ui/CocosGUI.h"
+
 
 
 class MainScene : public cocos2d::Scene
@@ -25,6 +27,10 @@ public:
     
     void update(float delta);
     
+    void gameOver();
+    
+    void restart();
+    
     // a selector callback
     //void menuCloseCallback(cocos2d::Ref* pSender);
     
@@ -32,10 +38,15 @@ public:
     CREATE_FUNC(MainScene);
     
 private:
+    Vec2 origin;
+    Size visibleSize;
     Container *container;
     float time;
     Figure *figures;
     EventListenerTouchOneByOne *listener;
+    DrawNode *foreground;
+    enum states { ACTIVE, GAME_OVER, PAUSE };
+    int gameState;
 };
 
 #endif /* MainScene_h */

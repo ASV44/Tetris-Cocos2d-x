@@ -20,12 +20,45 @@ vector<cocos2d::Point> Figure::style1(Point block, int type)
     
     switch(type)
     {
+        case 0:
+            //horizontal line figure
+            blocks =  {block, Point(block.x, block.y + 1),
+                Point(block.x, block.y + 2), Point(block.x, block.y + 3),
+                Point(block.x, block.y + 4)};
+            pivot = &blocks[2];
+            break;
         case 1:
+            // L figure
             blocks =  {block, Point(block.x, block.y + 1),
                 Point(block.x + 1, block.y), Point(block.x + 2, block.y)};
             pivot = &blocks[2];
             break;
         case 2:
+            // T-like figure
+            blocks =  {block, Point(block.x, block.y + 1),
+                Point(block.x, block.y + 2), Point(block.x + 1, block.y + 1)};
+            pivot = &blocks[1];
+            break;
+        case 3:
+            // square figure
+            blocks =  {block, Point(block.x, block.y + 1),
+                Point(block.x + 1, block.y), Point(block.x + 1, block.y + 1)};
+            pivot = NULL;
+            break;
+        case 4:
+            //Z-like figure left
+            blocks =  {block, Point(block.x, block.y + 1),
+                Point(block.x + 1, block.y), Point(block.x + 1, block.y - 1)};
+            pivot = &blocks[2];
+            break;
+        case 5:
+            //Z-like figure right
+            blocks =  {block, Point(block.x, block.y + 1),
+                Point(block.x + 1, block.y + 1), Point(block.x + 1, block.y + 2)};
+            pivot = &blocks[2];
+            break;
+        case 10:
+            //Custom figure
             blocks =  {block, Point(block.x, block.y + 1),
                 Point(block.x - 1, block.y + 1), Point(block.x - 2, block.y + 1),
                 Point(block.x - 2, block.y + 2), Point(block.x - 2, block.y + 3),
@@ -96,7 +129,7 @@ void Figure::rotate(int direction)
     
     for(int i = 0; i < blocks.size(); i++) {
         
-        if(&blocks[i] == pivot) {
+        if(&blocks[i] == pivot || pivot == NULL) {
             continue;
         }
         

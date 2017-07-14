@@ -70,6 +70,7 @@
 		D63C17721F0F8F7200965D61 /* redSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = D63C17701F0F8F7200965D61 /* redSquare.png */; };
 		D63C17731F0F8F7200965D61 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D63C17711F0F8F7200965D61 /* square.png */; };
 		D63C73B01F0E5C850066AD3F /* GridElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63C73AF1F0E5C850066AD3F /* GridElement.cpp */; };
+		D63CD3861F18ED5D00302066 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = D63CD3851F18ED5D00302066 /* restart.png */; };
 		D65120D21F15FC1700BF3653 /* Figure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D65120D01F15FC1700BF3653 /* Figure.cpp */; };
 		D6971D9C1F0E312C0058CFCC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = D6971D991F0E312C0058CFCC /* 1.png */; };
 		D6971D9D1F0E312C0058CFCC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D6971D9A1F0E312C0058CFCC /* 2.png */; };
@@ -182,6 +183,7 @@
 		D63C17711F0F8F7200965D61 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		D63C73AF1F0E5C850066AD3F /* GridElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridElement.cpp; sourceTree = "<group>"; };
 		D63C73B21F0E5C940066AD3F /* GridElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GridElement.h; sourceTree = "<group>"; };
+		D63CD3851F18ED5D00302066 /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
 		D6411C191F0FCDB800D7E125 /* CellStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellStyle.h; sourceTree = "<group>"; };
 		D65120D01F15FC1700BF3653 /* Figure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figure.cpp; sourceTree = "<group>"; };
 		D65120D11F15FC1700BF3653 /* Figure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figure.h; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				D6971D9B1F0E312C0058CFCC /* 3.png */,
 				D63C17701F0F8F7200965D61 /* redSquare.png */,
 				D63C17711F0F8F7200965D61 /* square.png */,
+				D63CD3851F18ED5D00302066 /* restart.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 			);
 			name = Resources;
@@ -520,6 +523,7 @@
 				D6971D9D1F0E312C0058CFCC /* 2.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				D63CD3861F18ED5D00302066 /* restart.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
