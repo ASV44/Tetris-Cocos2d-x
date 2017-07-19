@@ -60,8 +60,31 @@ bool MainScene::init()
     };
     
     listener->onTouchEnded = [=](Touch* touch, Event* event){
-        
-        figures->rotate(0, container);
+        auto start = touch->getStartLocationInView();
+        auto end = touch->getLocationInView();
+        auto delta = start - end;
+        if(delta != Vec2(0,0)) {
+            if(abs(delta.x) > abs(delta.y)) {
+                if(delta.x > 0) {
+                   log("Swipped Left");
+                }
+                else {
+                    log("Swiped Right");
+                    
+                }
+            }
+            else {
+                if(delta.y > 0) {
+                    log("Swipped Up");
+                }
+                else {
+                    log("Swipped Down");
+                }
+            }
+        }
+        else {
+            figures->rotate(0, container);
+        }
         
         return true;
     };
@@ -108,6 +131,7 @@ bool MainScene::init()
     });
     
     foreground->addChild(button);
+    
     
     return true;
 }
