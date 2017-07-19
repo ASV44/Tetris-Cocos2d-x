@@ -90,9 +90,17 @@ int Figure::getBlockColumn(int block) {
     return int(blocks[block].y);
 }
 
-void Figure::moveDown()
+void Figure::moveDown(Container *container)
 {
+    vector<Point> initialBlocks = blocks;
+    
     for(int i = 0; i < blocks.size(); ++i) {
+        if(!isInside(Point(blocks[i].x - 1, blocks[i].y)) &&
+           container->getContainerElements(blocks[i].x - 1, blocks[i].y)->getType() != DEFAULT_STYLE)
+        {
+            blocks = initialBlocks;
+            break;
+        }
         blocks[i].x --;
     }
 }
@@ -100,7 +108,7 @@ void Figure::moveDown()
 void Figure::reset(Size containerSize)
 {
     
-    blocks = style1(Point(containerSize.width - 1,
+    blocks = style1(Point(containerSize.width,
                     int(containerSize.height / 2)),
                     styleType);
 }
@@ -121,11 +129,14 @@ bool Figure::isInside(Point block)
     
 }
 
-void Figure::rotate(int direction)
+void Figure::rotate(int direction, Container *container)
 {
     int delta_row, delta_column;
     int deltaRow, deltaColumn;
     int control = 0;
+    
+    vector<Point> initialBlocks = blocks;
+    
     
     for(int i = 0; i < blocks.size(); i++) {
         
@@ -169,11 +180,17 @@ void Figure::rotate(int direction)
                 deltaRow = -delta_row;
                 break;
         }
-        
         blocks[i].x += deltaRow;
         blocks[i].y += deltaColumn;
         
-
+        if(blocks[i].x < 0 || blocks[i].y < 0 || blocks[i].x >= container->getContainerSize().width
+           || blocks[i].y >= container->getContainerSize().height ||
+           (find(initialBlocks.begin(), initialBlocks.end(), blocks[i]) == initialBlocks.end() &&
+            container->getContainerElements(blocks[i].x, blocks[i].y)->getType() == ACTIVE_STYLE))
+        {
+            blocks = initialBlocks;
+            break;
+        }
     }
 }
 
@@ -183,4 +200,21 @@ void Figure::showPosition()
          CCLOG("Element %d Row %f Columns %f \n", i, blocks[i].x, blocks[i].y);
     }
     CCLOG("\n");
+}
+
+void Figure::moveUp(Container *container)
+{
+    for(int i = 0; i < blocks.size(); ++i) {
+        blocks[i].x ++;
+    }
+}
+
+Point Figure::getBlock(int i)
+{
+    return blocks[i];
+}
+
+void Figure::setBlocks(vector<Point> blocks)
+{
+    this->blocks = blocks;
 }

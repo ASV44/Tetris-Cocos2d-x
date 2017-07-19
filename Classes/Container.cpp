@@ -120,3 +120,28 @@ Size Container::getCellSize()
 {
     return cellSize;
 }
+
+void Container::clearElements(vector<Point> toClear)
+{
+    int x, y;
+    
+    for(int i = 0; i < toClear.size(); ++i) {
+        x = int(toClear[i].x);
+        y = int(toClear[i].y);
+        if( x <= containerSize.width - 1) {
+            elements[x][y]->setType(DEFAULT_STYLE);
+            elements[x][y]->setContentSize(cellSize);
+        }
+    }
+}
+
+void Container::showActiveElements()
+{
+    for(int i = 0; i < containerSize.width; ++i) {
+        for(int j = 0; j < containerSize.height; ++j) {
+            if(elements[i][j]->getType() == ACTIVE_STYLE) {
+                CCLOG("Element %d %d style Active",i,j);
+            }
+        }
+    }
+}

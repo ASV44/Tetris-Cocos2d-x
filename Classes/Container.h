@@ -20,6 +20,8 @@ public:
     GridElement *getContainerElements(int row, int column);
     cocos2d::Size getContainerSize();
     cocos2d::Size getCellSize();
+    void clearElements(vector<cocos2d::Point> toClear);
+    void showActiveElements();
     
 private:
     GridElement ***elements;
