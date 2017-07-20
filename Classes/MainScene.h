@@ -42,7 +42,7 @@ private:
     Size visibleSize;
     Container *container;
     float time;
-    Figure *figures;
+    Figure *figure;
     EventListenerTouchOneByOne *listener;
     DrawNode *foreground;
     enum states { ACTIVE, GAME_OVER, PAUSE };

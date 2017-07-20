@@ -47,7 +47,7 @@ bool MainScene::init()
     
     this->addChild(container);
     
-    figures = new Figure(1, Point(container->getContainerSize().width,
+    figure = new Figure(Point(container->getContainerSize().width,
                                      int(container->getContainerSize().height / 2)));
     
     deltaTime = 0.3;
@@ -69,11 +69,11 @@ bool MainScene::init()
             if(abs(delta.x) > abs(delta.y)) {
                 if(delta.x > 0) {
                    log("Swipped Left");
-                    figures->moveLeft(container);
+                    figure->moveLeft(container);
                 }
                 else {
                     log("Swiped Right");
-                    figures->moveRight(container);
+                    figure->moveRight(container);
                 }
             }
             else {
@@ -87,7 +87,7 @@ bool MainScene::init()
             }
         }
         else {
-            figures->rotate(0, container);
+            figure->rotate(0, container);
         }
         
         return true;
@@ -150,7 +150,7 @@ void MainScene::update(float delta) {
     static vector<Point> toClear;
     //static bool bottomReached = false;
     int rendered = 0;
-    //vector<Point> initialBlocks = figures->getBlocks();
+    //vector<Point> initialBlocks = figure->getBlocks();
     
     time += delta;
     if(time > deltaTime && gameState == ACTIVE) {
@@ -159,15 +159,15 @@ void MainScene::update(float delta) {
 
         container->checkFirstRow();
 
-        reset = figures->moveDown(container);
-        toClear = figures->getBlocks();
+        reset = figure->moveDown(container);
+        toClear = figure->getBlocks();
 
         
         
-        for(int i = 0; i < figures->getBlocks().size(); ++i)
+        for(int i = 0; i < figure->getBlocks().size(); ++i)
         {
-            row = figures->getBlockRow(i);
-            column = figures->getBlockColumn(i);
+            row = figure->getBlockRow(i);
+            column = figure->getBlockColumn(i);
 //            if( row < container->getContainerSize().width - 1) {
 ////                container->getContainerElements(row + 1,column)->setTexture(DEFAULT_STYLE);
 //                container->getContainerElements(row + 1,column)->setType(DEFAULT_STYLE);
@@ -179,7 +179,7 @@ void MainScene::update(float delta) {
                 container->getContainerElements(row,column)->setType(ACTIVE_STYLE);
                 container->getContainerElements(row,column)->setContentSize(container->getCellSize());
                 
-//                if(row == 0 || (!figures->isInside(Point(row - 1, column)) &&
+//                if(row == 0 || (!figure->isInside(Point(row - 1, column)) &&
 //                                container->getContainerElements(row - 1, column)->getType() != DEFAULT_STYLE)) // checking of colision and bottom reaching
 //                {
 //                    
@@ -192,7 +192,7 @@ void MainScene::update(float delta) {
         }
         //CCLOG("Rendered %d", rendered);
 //        CCLOG("Reset %d", reset);
-        if(reset == true && rendered < figures->getBlocks().size())
+        if(reset == true && rendered < figure->getBlocks().size())
         {
             gameState = GAME_OVER;
             gameOver();
@@ -200,9 +200,10 @@ void MainScene::update(float delta) {
         
         time = 0;
         
-        if(reset == true && rendered == figures->getBlocks().size()) {
+        if(reset == true && rendered == figure->getBlocks().size()) {
             toClear.clear();
-            figures->reset(container->getContainerSize());
+            //figure->reset(container->getContainerSize());
+            figure->changeToRandomFigure();
             reset = false;
             if(deltaTime != 0.3) { deltaTime = 0.3; }
         }
@@ -233,5 +234,5 @@ void MainScene::restart()
         }
     }
     
-    figures->reset(container->getContainerSize());
+    figure->reset(container->getContainerSize());
 }

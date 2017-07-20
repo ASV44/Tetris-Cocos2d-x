@@ -12,6 +12,7 @@
 using namespace std;
 
 #include <vector>
+#include <ctime>
 #include "Container.h"
 
 USING_NS_CC;
@@ -24,6 +25,7 @@ class Figure
 {
 public:
     Figure(int type, cocos2d::Point block);
+    Figure(Point block);
     vector<cocos2d::Point> getBlocks();
     Point getBlock(int i);
     int getBlockRow(int block);
@@ -38,12 +40,15 @@ public:
     void moveLeft(Container *container);
     void moveRight(Container *container);
     bool isInside(vector<Point> blocks, Point block);
+    int getRandomStyle();
+    void changeToRandomFigure();
     
 private:
     int styleType;
     vector<cocos2d::Point> blocks;
     vector<cocos2d::Point> style1(cocos2d::Point block, int type);
     cocos2d::Point *pivot;
+    Point startingPoint;
     
 };
 

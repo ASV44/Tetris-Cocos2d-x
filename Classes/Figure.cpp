@@ -14,9 +14,17 @@ Figure::Figure(int type, Point block)
     blocks = style1(block, type);
 }
 
+Figure::Figure(Point block)
+{
+    styleType = getRandomStyle();
+    blocks = style1(block, styleType);
+}
+
 vector<cocos2d::Point> Figure::style1(Point block, int type)
 {
     vector<cocos2d::Point> blocks;
+    
+    this->startingPoint = block;
     
     switch(type)
     {
@@ -75,6 +83,13 @@ vector<cocos2d::Point> Figure::style1(Point block, int type)
     }
     
     return blocks;
+}
+
+int Figure::getRandomStyle()
+{
+    srand(time( 0 ));
+    return rand() % 6;
+    
 }
 
 vector<Point> Figure::getBlocks()
@@ -279,4 +294,9 @@ void Figure::moveRight(Container *container)
         }
         blocks[i].y ++;
     }
+}
+
+void Figure::changeToRandomFigure()
+{
+    blocks = style1(startingPoint, getRandomStyle());
 }
