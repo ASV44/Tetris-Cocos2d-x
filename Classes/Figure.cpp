@@ -90,18 +90,31 @@ int Figure::getBlockColumn(int block) {
     return int(blocks[block].y);
 }
 
-void Figure::moveDown(Container *container)
+bool Figure::moveDown(Container *container)
 {
+    bool reset = false;
     vector<Point> initialBlocks = blocks;
     
     for(int i = 0; i < blocks.size(); ++i) {
-        if(!isInside(Point(blocks[i].x - 1, blocks[i].y)) &&
+        if(blocks[i].x - 1 < container->getContainerSize().width &&
+           !isInside(initialBlocks, Point(blocks[i].x - 1, blocks[i].y)) &&
            container->getContainerElements(blocks[i].x - 1, blocks[i].y)->getType() != DEFAULT_STYLE)
         {
             blocks = initialBlocks;
+            reset  = true;
             break;
         }
         blocks[i].x --;
+        if(blocks[i].x == 0 && !reset) {
+            reset = true;
+        }
+    }
+    
+    if(reset) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -125,6 +138,22 @@ bool Figure::isInside(Point block)
         isInside = false;
     }
 
+    return isInside;
+    
+}
+
+bool Figure::isInside(vector<Point> blocks, Point block)
+{
+    bool isInside = false;
+    
+    if(find(blocks.begin(), blocks.end(), block) != blocks.end()) {
+        isInside = true;
+    }
+    else
+    {
+        isInside = false;
+    }
+    
     return isInside;
     
 }
@@ -217,4 +246,21 @@ Point Figure::getBlock(int i)
 void Figure::setBlocks(vector<Point> blocks)
 {
     this->blocks = blocks;
+}
+
+void Figure::moveLeft(Container *container)
+{
+    vector<Point> initialBlocks = blocks;
+    showPosition();
+    container->showActiveElements();
+    for(int i = 0; i < blocks.size(); ++i) {
+        CCLOG("IsInside element %d = %d",i, isInside(Point(blocks[i].x, blocks[i].y - 1)));
+        if(blocks[i].y - 1 >= 0 && !isInside(Point(blocks[i].x, blocks[i].y - 1)) &&
+           container->getContainerElements(blocks[i].x, blocks[i].y - 1)->getType() != DEFAULT_STYLE)
+        {
+            blocks = initialBlocks;
+            break;
+        }
+        blocks[i].y --;
+    }
 }

@@ -47,7 +47,7 @@ bool MainScene::init()
     
     this->addChild(container);
     
-    figures = new Figure(0, Point(container->getContainerSize().width,
+    figures = new Figure(1, Point(container->getContainerSize().width,
                                      int(container->getContainerSize().height / 2)));
     
     this->scheduleUpdate();
@@ -67,6 +67,7 @@ bool MainScene::init()
             if(abs(delta.x) > abs(delta.y)) {
                 if(delta.x > 0) {
                    log("Swipped Left");
+                    figures->moveLeft(container);
                 }
                 else {
                     log("Swiped Right");
@@ -154,7 +155,7 @@ void MainScene::update(float delta) {
         container->clearElements(toClear);
         
 
-        figures->moveDown(container);
+        reset = figures->moveDown(container);
         toClear = figures->getBlocks();
 
         
@@ -174,19 +175,20 @@ void MainScene::update(float delta) {
                 container->getContainerElements(row,column)->setType(ACTIVE_STYLE);
                 container->getContainerElements(row,column)->setContentSize(container->getCellSize());
                 
-                if(row == 0 || (!figures->isInside(Point(row - 1, column)) &&
-                                container->getContainerElements(row - 1, column)->getType() != DEFAULT_STYLE)) // checking of colision and bottom reaching
-                {
-                    
-                    reset = true;
-                }
+//                if(row == 0 || (!figures->isInside(Point(row - 1, column)) &&
+//                                container->getContainerElements(row - 1, column)->getType() != DEFAULT_STYLE)) // checking of colision and bottom reaching
+//                {
+//                    
+//                    reset = true;
+//                }
                 
                 rendered ++;
             }
             
         }
         //CCLOG("Rendered %d", rendered);
-        if(rendered < figures->getBlocks().size())
+//        CCLOG("Reset %d", reset);
+        if(reset == true && rendered < figures->getBlocks().size())
         {
             gameState = GAME_OVER;
             gameOver();
@@ -194,7 +196,7 @@ void MainScene::update(float delta) {
         
         time = 0;
         
-        if(reset == true) {
+        if(reset == true && rendered == figures->getBlocks().size()) {
             toClear.clear();
             figures->reset(container->getContainerSize());
             reset = false;

@@ -28,13 +28,16 @@ public:
     Point getBlock(int i);
     int getBlockRow(int block);
     int getBlockColumn(int block);
-    void moveDown(Container *container);
+    bool moveDown(Container *container);
     void moveUp(Container *container);
     void reset(Size containerSize);
     bool isInside(Point block);
     void rotate(int direction, Container *container);
     void showPosition();
     void setBlocks(vector<Point> blocks);
+    void moveLeft(Container *container);
+    void moveRight(Container *container);
+    bool isInside(vector<Point> blocks, Point block);
     
 private:
     int styleType;
