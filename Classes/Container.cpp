@@ -145,3 +145,29 @@ void Container::showActiveElements()
         }
     }
 }
+
+void Container::checkFirstRow()
+{
+    int actives = 0;
+    
+    for(int i = 0; i < containerSize.height; ++i) {
+        if(elements[0][i]->getType() == ACTIVE_STYLE) {
+            actives ++;
+        }
+    }
+    if(actives == containerSize.height) {
+        for(int i = 0; i < containerSize.width; ++i) {
+            for(int j = 0; j < containerSize.height; ++j) {
+//                elements[0][j]->setType(DEFAULT_STYLE);
+//                elements[0][j]->setContentSize(cellSize);
+                if(elements[i][j]->getType() == ACTIVE_STYLE) {
+                    elements[i][j]->setType(DEFAULT_STYLE);
+                    elements[i][j]->setContentSize(cellSize);
+                    if(i != 0) {
+                        elements[i - 1][j]->setType(ACTIVE_STYLE);
+                    }
+                }
+            }
+        }
+    }
+}

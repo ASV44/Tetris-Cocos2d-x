@@ -50,6 +50,8 @@ bool MainScene::init()
     figures = new Figure(1, Point(container->getContainerSize().width,
                                      int(container->getContainerSize().height / 2)));
     
+    deltaTime = 0.3;
+    
     this->scheduleUpdate();
     
     listener = EventListenerTouchOneByOne::create();
@@ -80,6 +82,7 @@ bool MainScene::init()
                 }
                 else {
                     log("Swipped Down");
+                    deltaTime = 0.05;
                 }
             }
         }
@@ -150,10 +153,11 @@ void MainScene::update(float delta) {
     //vector<Point> initialBlocks = figures->getBlocks();
     
     time += delta;
-    if(time > 0.3 && gameState == ACTIVE) {
+    if(time > deltaTime && gameState == ACTIVE) {
         
         container->clearElements(toClear);
-        
+
+        container->checkFirstRow();
 
         reset = figures->moveDown(container);
         toClear = figures->getBlocks();
@@ -200,6 +204,7 @@ void MainScene::update(float delta) {
             toClear.clear();
             figures->reset(container->getContainerSize());
             reset = false;
+            if(deltaTime != 0.3) { deltaTime = 0.3; }
         }
 
     }

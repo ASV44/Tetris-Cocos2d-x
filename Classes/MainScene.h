@@ -47,6 +47,7 @@ private:
     DrawNode *foreground;
     enum states { ACTIVE, GAME_OVER, PAUSE };
     int gameState;
+    float deltaTime;
 };
 
 #endif /* MainScene_h */

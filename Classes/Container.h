@@ -22,6 +22,7 @@ public:
     cocos2d::Size getCellSize();
     void clearElements(vector<cocos2d::Point> toClear);
     void showActiveElements();
+    void checkFirstRow();
     
 private:
     GridElement ***elements;
