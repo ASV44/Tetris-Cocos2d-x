@@ -251,16 +251,32 @@ void Figure::setBlocks(vector<Point> blocks)
 void Figure::moveLeft(Container *container)
 {
     vector<Point> initialBlocks = blocks;
-    showPosition();
-    container->showActiveElements();
+
     for(int i = 0; i < blocks.size(); ++i) {
-        CCLOG("IsInside element %d = %d",i, isInside(Point(blocks[i].x, blocks[i].y - 1)));
-        if(blocks[i].y - 1 >= 0 && !isInside(Point(blocks[i].x, blocks[i].y - 1)) &&
-           container->getContainerElements(blocks[i].x, blocks[i].y - 1)->getType() != DEFAULT_STYLE)
+        if(blocks[i].y - 1 < 0 || (blocks[i].x < container->getContainerSize().width &&
+           !isInside(initialBlocks, Point(blocks[i].x, blocks[i].y - 1)) &&
+           container->getContainerElements(blocks[i].x, blocks[i].y - 1)->getType() != DEFAULT_STYLE))
         {
             blocks = initialBlocks;
             break;
         }
         blocks[i].y --;
+    }
+}
+
+void Figure::moveRight(Container *container)
+{
+    vector<Point> initialBlocks = blocks;
+    
+    for(int i = 0; i < blocks.size(); ++i) {
+        if(blocks[i].y + 1 >= container->getContainerSize().height ||
+           (blocks[i].x < container->getContainerSize().width &&
+            !isInside(initialBlocks, Point(blocks[i].x, blocks[i].y + 1)) &&
+            container->getContainerElements(blocks[i].x, blocks[i].y + 1)->getType() != DEFAULT_STYLE))
+        {
+            blocks = initialBlocks;
+            break;
+        }
+        blocks[i].y ++;
     }
 }

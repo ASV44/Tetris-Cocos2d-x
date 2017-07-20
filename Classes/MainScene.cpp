@@ -71,7 +71,7 @@ bool MainScene::init()
                 }
                 else {
                     log("Swiped Right");
-                    
+                    figures->moveRight(container);
                 }
             }
             else {
