@@ -23,6 +23,7 @@ public:
     void clearElements(vector<cocos2d::Point> toClear);
     void showActiveElements();
     void checkFirstRow();
+    void moveActivesDown();
     
 private:
     GridElement ***elements;
