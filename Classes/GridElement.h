@@ -11,6 +11,7 @@
 
 #include "CellStyle.h"
 #include <string>
+#include "cocos2d.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
     GridElement(string name);
     void setType(int type);
     int getType();
-    
+
 private:
     int _type;
 };
