@@ -18,6 +18,7 @@ GridElement::GridElement(string name)
 
 void GridElement::setType(int type)
 {
+    CCLOG("Grid Element Type:%d", type);
     this->_type = type;
     
     switch (_type) {
