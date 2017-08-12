@@ -11,13 +11,14 @@ LOCAL_MODULE := MyGame_shared
 
 LOCAL_MODULE_FILENAME := libMyGame
 
-LOCAL_SRC_FILES := hellocpp/main.cpp \
-                   ../../../Classes/AppDelegate.cpp \
-                   ../../../Classes/HelloWorldScene.cpp \
-									 ../../../Classes/Container.cpp \
-									 ../../../Classes/Figure.cpp \
-									 ../../../Classes/GridElement.cpp \
-									 ../../../Classes/MainScene.cpp
+HELLOCPP_FILES  := $(wildcard $(LOCAL_PATH)/hellocpp/*.cpp)
+HELLOCPP_FILES  := $(HELLOCPP_FILES:$(LOCAL_PATH)/%=%)
+
+CLASSES_FILES   := $(wildcard $(LOCAL_PATH)/../../../Classes/*.cpp)
+CLASSES_FILES   := $(CLASSES_FILES:$(LOCAL_PATH)/%=%)
+
+LOCAL_SRC_FILES := $(HELLOCPP_FILES)
+LOCAL_SRC_FILES += $(CLASSES_FILES)
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
 
@@ -29,6 +30,10 @@ LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
 # _COCOS_LIB_ANDROID_BEGIN
 # _COCOS_LIB_ANDROID_END
+
+LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
+
+# APP_DEPRECATED_HEADERS := true
 
 include $(BUILD_SHARED_LIBRARY)
 

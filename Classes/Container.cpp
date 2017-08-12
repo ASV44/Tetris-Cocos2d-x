@@ -28,7 +28,7 @@ Container::Container(Size matrixSize, Size shapeSize, Size cellSize)
     for(int i = 0; i < rows; ++i) {
         elements[i] = new GridElement*[columns];
         for (int j = 0; j < columns; ++j) {
-            elements[i][j] = new GridElement(std::to_string( 1 + rand() % 3) + ".png");
+            elements[i][j] = new GridElement(std::to_string( 1 + rand() % 3) + ".png", shapeSize);
             //elements[i][j] = new GridElement("square.png");
             elements[i][j]->setPosition(Vec2(j * cellSize.width, i * cellSize.height));//(j + 1) * 10, i * 10));
             elements[i][j]->setContentSize(shapeSize);
@@ -60,7 +60,7 @@ Container::Container(float error)
 //        colomns = int(visibleSize.width / shapeSize.width);
 //        shapeSize
 //    }
-    columns = 1;
+    columns = 9;
     while(1) {
         width = visibleSize.width / columns;
         tempRows = visibleSize.height / width;
@@ -79,14 +79,11 @@ Container::Container(float error)
     
     cellSize = Size(width,height);
     
-    Size newSize = Size(width, height);
-    
     for(int i = 0; i < rows; ++i) {
         elements[i] = new GridElement*[columns];
         for (int j = 0; j < columns; ++j) {
-            elements[i][j] = new GridElement("square.png");
+            elements[i][j] = new GridElement("square.png", cellSize);
             elements[i][j]->setPosition(Vec2(j * width, i * height));//(j + 1) * 10, i * 10));
-            elements[i][j]->setContentSize(newSize);
             elements[i][j]->setAnchorPoint(Point(0,0));
             this->addChild(elements[i][j], 1);
         }
@@ -129,8 +126,7 @@ void Container::clearElements(vector<Point> toClear)
         x = int(toClear[i].x);
         y = int(toClear[i].y);
         if( x <= containerSize.width - 1) {
-            elements[x][y]->setType(DEFAULT_STYLE);
-            elements[x][y]->setContentSize(cellSize);
+            elements[x][y]->setType(GridElement::DEFAULT_STYLE);
         }
     }
 }
@@ -139,7 +135,7 @@ void Container::showActiveElements()
 {
     for(int i = 0; i < containerSize.width; ++i) {
         for(int j = 0; j < containerSize.height; ++j) {
-            if(elements[i][j]->getType() == ACTIVE_STYLE) {
+            if(elements[i][j]->getType() == GridElement::ACTIVE_STYLE) {
                 CCLOG("Element %d %d style Active",i,j);
             }
         }
@@ -150,10 +146,10 @@ void Container::checkFirstRow()
 {
     int actives = 0;
     
-    for(int i = 0; i < containerSize.width; ++i) {
+    for(int i = 0; i < containerSize.width; i++) {
         actives = 0;
-        for(int j = 0; j < containerSize.height; ++j) {
-            if(elements[i][j]->getType() == ACTIVE_STYLE) {
+        for(int j = 0; j < containerSize.height; j++) {
+            if(elements[i][j]->getType() == GridElement::ACTIVE_STYLE) {
                 actives ++;
             }
             else {
@@ -161,20 +157,19 @@ void Container::checkFirstRow()
             }
         }
         if(actives == containerSize.height) {
-            moveActivesDown();
+            moveActivesDown(i);
         }
     }
 }
 
-void Container::moveActivesDown()
+void Container::moveActivesDown(int startingRow)
 {
-    for(int i = 0; i < containerSize.width; ++i) {
+    for(int i = startingRow; i < containerSize.width; ++i) {
         for(int k = 0; k < containerSize.height; ++k) {
-            if(elements[i][k]->getType() != DEFAULT_STYLE) {
-                elements[i][k]->setType(DEFAULT_STYLE);
-                elements[i][k]->setContentSize(cellSize);
-                if(i != 0) {
-                    elements[i - 1][k]->setType(ACTIVE_STYLE);
+            if(elements[i][k]->getType() != GridElement::DEFAULT_STYLE) {
+                elements[i][k]->setType(GridElement::DEFAULT_STYLE);
+                if(i != startingRow) {
+                    elements[i - 1][k]->setType(GridElement::ACTIVE_STYLE);
                 }
             }
         }

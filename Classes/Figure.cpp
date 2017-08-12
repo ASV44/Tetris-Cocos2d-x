@@ -113,7 +113,7 @@ bool Figure::moveDown(Container *container)
     for(int i = 0; i < blocks.size(); ++i) {
         if(blocks[i].x - 1 < container->getContainerSize().width &&
            !isInside(initialBlocks, Point(blocks[i].x - 1, blocks[i].y)) &&
-           container->getContainerElements(blocks[i].x - 1, blocks[i].y)->getType() != DEFAULT_STYLE)
+           container->getContainerElements(blocks[i].x - 1, blocks[i].y)->getType() != GridElement::DEFAULT_STYLE)
         {
             blocks = initialBlocks;
             reset  = true;
@@ -230,7 +230,7 @@ void Figure::rotate(int direction, Container *container)
         if(blocks[i].x < 0 || blocks[i].y < 0 || blocks[i].x >= container->getContainerSize().width
            || blocks[i].y >= container->getContainerSize().height ||
            (find(initialBlocks.begin(), initialBlocks.end(), blocks[i]) == initialBlocks.end() &&
-            container->getContainerElements(blocks[i].x, blocks[i].y)->getType() == ACTIVE_STYLE))
+            container->getContainerElements(blocks[i].x, blocks[i].y)->getType() == GridElement::ACTIVE_STYLE))
         {
             blocks = initialBlocks;
             break;
@@ -270,7 +270,7 @@ void Figure::moveLeft(Container *container)
     for(int i = 0; i < blocks.size(); ++i) {
         if(blocks[i].y - 1 < 0 || (blocks[i].x < container->getContainerSize().width &&
            !isInside(initialBlocks, Point(blocks[i].x, blocks[i].y - 1)) &&
-           container->getContainerElements(blocks[i].x, blocks[i].y - 1)->getType() != DEFAULT_STYLE))
+           container->getContainerElements(blocks[i].x, blocks[i].y - 1)->getType() != GridElement::DEFAULT_STYLE))
         {
             blocks = initialBlocks;
             break;
@@ -287,7 +287,7 @@ void Figure::moveRight(Container *container)
         if(blocks[i].y + 1 >= container->getContainerSize().height ||
            (blocks[i].x < container->getContainerSize().width &&
             !isInside(initialBlocks, Point(blocks[i].x, blocks[i].y + 1)) &&
-            container->getContainerElements(blocks[i].x, blocks[i].y + 1)->getType() != DEFAULT_STYLE))
+            container->getContainerElements(blocks[i].x, blocks[i].y + 1)->getType() != GridElement::DEFAULT_STYLE))
         {
             blocks = initialBlocks;
             break;

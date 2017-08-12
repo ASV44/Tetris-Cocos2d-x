@@ -176,8 +176,7 @@ void MainScene::update(float delta) {
 //            }
             if(row < container->getContainerSize().width && column < container->getContainerSize().height)
             {
-                container->getContainerElements(row,column)->setType(ACTIVE_STYLE);
-                container->getContainerElements(row,column)->setContentSize(container->getCellSize());
+                container->getContainerElements(row,column)->setType(GridElement::ACTIVE_STYLE);
                 
 //                if(row == 0 || (!figure->isInside(Point(row - 1, column)) &&
 //                                container->getContainerElements(row - 1, column)->getType() != DEFAULT_STYLE)) // checking of colision and bottom reaching
@@ -228,8 +227,8 @@ void MainScene::restart()
     
     for(int i = 0; i < containerSize.width; ++i) {
         for(int j = 0; j < containerSize.height; ++j) {
-            if(container->getContainerElements(i, j)->getType() != DEFAULT_STYLE) {
-                container->getContainerElements(i, j)->setType(DEFAULT_STYLE);
+            if(container->getContainerElements(i, j)->getType() != GridElement::DEFAULT_STYLE) {
+                container->getContainerElements(i, j)->setType(GridElement::DEFAULT_STYLE);
             };
         }
     }

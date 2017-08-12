@@ -9,23 +9,24 @@
 #ifndef GridElememnt_h
 #define GridElememnt_h
 
-#include "CellStyle.h"
 #include <string>
 #include "cocos2d.h"
 
 using namespace std;
 
-using namespace CellStyle;
+USING_NS_CC;
 
 class GridElement : public cocos2d::Sprite
 {
 public:
-    GridElement(string name);
+    GridElement(string name, Size size);
     void setType(int type);
     int getType();
+    enum cellStyle {DEFAULT_STYLE, ACTIVE_STYLE};
 
 private:
     int _type;
+    Size size;
 };
 
 #endif /* GridElememnt_h */

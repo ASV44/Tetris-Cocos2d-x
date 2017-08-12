@@ -10,9 +10,10 @@
 
 
 
-GridElement::GridElement(string name)
+GridElement::GridElement(string name, Size size)
 {
     this->initWithFile(name);
+    this->size = size;
     this->setType(DEFAULT_STYLE);
 }
 
@@ -33,6 +34,7 @@ void GridElement::setType(int type)
         default:
             break;
     }
+    this->setContentSize(size);
 }
 
 int GridElement::getType()
